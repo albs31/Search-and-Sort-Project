@@ -43,6 +43,6 @@ public class SearchAndSortAnalysis
     execTime = (System.nanoTime() - startTime) / 1e9;
     System.out.println("Binary Search (Recursive): " + execTime + " seconds");
 
-    System.out.println("CONCLUSION: Merge Sort is the fastest sorting algorithm, and Binary (Iterative) Search is the fastest search algorithm.");
+    System.out.println("CONCLUSION: Merge Sort is the fastest sorting algorithm, and Iterative Binary Search is the fastest search algorithm.");
   }
 }
