@@ -8,8 +8,8 @@ public class SearchAndSortAnalysis
     SortandSearchAlgorithms.load();
  
     ArrayList<Book> books = Data.getBooks();
+    ArrayList<Sentiment> sentiments = Data.getSentiments();
  
-    // Sorting
     double startTime = System.nanoTime();
     SortandSearchAlgorithms.selectionSort(books);
     double execTime = (System.nanoTime() - startTime) / 1e9;
@@ -25,24 +25,23 @@ public class SearchAndSortAnalysis
     execTime = (System.nanoTime() - startTime) / 1e9;
     System.out.println("Merge Sort: " + execTime + " seconds");
  
-    // Searching 
-    String target = "Peter Pan";
+    String target = "demand";
  
     startTime = System.nanoTime();
-    SortandSearchAlgorithms.linearSearch(sorted, target);
+    int index = SortandSearchAlgorithms.linearSearchSentiment(sentiments, target);
     execTime = (System.nanoTime() - startTime) / 1e9;
-    System.out.println("Linear Search: " + execTime + " seconds");
+    System.out.println("Linear Search: " + sentiments.get(index).getPhrase() + " = " + sentiments.get(index).getValue() + " in " + execTime + " seconds");
  
     startTime = System.nanoTime();
-    SortandSearchAlgorithms.binarySearchIterative(sorted, target);
+    index = SortandSearchAlgorithms.binarySearchSentimentIterative(sentiments, target);
     execTime = (System.nanoTime() - startTime) / 1e9;
-    System.out.println("Binary Search (Iterative): " + execTime + " seconds");
+    System.out.println("Binary Search (Iterative): " + sentiments.get(index).getPhrase() + " = " + sentiments.get(index).getValue() + " in " + execTime + " seconds");
  
     startTime = System.nanoTime();
-    SortandSearchAlgorithms.binarySearchRecursive(sorted, target, 0, sorted.size() - 1);
+    index = SortandSearchAlgorithms.binarySearchSentimentRecursive(sentiments, target, 0, sentiments.size() - 1);
     execTime = (System.nanoTime() - startTime) / 1e9;
-    System.out.println("Binary Search (Recursive): " + execTime + " seconds");
+    System.out.println("Binary Search (Recursive): " + sentiments.get(index).getPhrase() + " = " + sentiments.get(index).getValue() + " in " + execTime + " seconds");
 
-    System.out.println("CONCLUSION: Merge Sort is the fastest sorting algorithm, and Iterative Binary Search is the fastest search algorithm.");
+    System.out.println("CONCLUSION: Merge Sort is the fastest sorting algorithm, and Recursive Binary Search is the fastest search algorithm.");
   }
 }
