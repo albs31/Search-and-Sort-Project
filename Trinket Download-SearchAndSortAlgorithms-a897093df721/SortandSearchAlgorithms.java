@@ -71,43 +71,34 @@ if (list.size() <= 1) return list;
     }
 
     // linear search
-    public static int linearSearch(ArrayList<Book> list, String target) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getTitle().equalsIgnoreCase(target)) {
-                return i;
-            }
-        }
-        return -1;
+    public static int linearSearchSentiment(ArrayList<Sentiment> list, String target) {
+    for (int i = 0; i < list.size(); i++) {
+      if (list.get(i).getPhrase().equalsIgnoreCase(target))
+        return i;
     }
-
-    // iterative binary search
-    public static int binarySearchIterative(ArrayList<Book> list, String target) {
-        int low = 0;
-        int high = list.size() - 1;
-
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            int cmp = list.get(mid).getTitle().compareToIgnoreCase(target);
-
-            if (cmp == 0) return mid;
-            else if (cmp < 0) low = mid + 1;
-            else high = mid - 1;
-        }
-
-        return -1;
+    return -1;
+  }
+ 
+  // iterative binary search 
+  public static int binarySearchSentimentIterative(ArrayList<Sentiment> list, String target) {
+    int low = 0, high = list.size() - 1;
+    while (low <= high) {
+      int mid = (low + high) / 2;
+      int cmp = list.get(mid).getPhrase().compareToIgnoreCase(target);
+      if (cmp == 0) return mid;
+      else if (cmp < 0) low = mid + 1;
+      else high = mid - 1;
     }
-
-    // recursive binary search
-    public static int binarySearchRecursive(ArrayList<Book> list, String target, int low, int high) {
-        if (low > high) return -1;
-
-        int mid = (low + high) / 2;
-        int cmp = list.get(mid).getTitle().compareToIgnoreCase(target);
-
-        if (cmp == 0) return mid;
-        else if (cmp < 0)
-            return binarySearchRecursive(list, target, mid + 1, high);
-        else
-            return binarySearchRecursive(list, target, low, mid - 1);
-    }
+    return -1;
+  }
+ 
+  // recursive binary search 
+  public static int binarySearchSentimentRecursive(ArrayList<Sentiment> list, String target, int low, int high) {
+    if (low > high) return -1;
+    int mid = (low + high) / 2;
+    int cmp = list.get(mid).getPhrase().compareToIgnoreCase(target);
+    if (cmp == 0) return mid;
+    else if (cmp < 0) return binarySearchSentimentRecursive(list, target, mid + 1, high);
+    else return binarySearchSentimentRecursive(list, target, low, mid - 1);
+  }
 }
